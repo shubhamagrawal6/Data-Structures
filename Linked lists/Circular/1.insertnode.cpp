@@ -1,4 +1,4 @@
-//We access circular linked lists by pointer to last element
+//We access circular linked lists by pointer to last element in this program
 
 #include<bits/stdc++.h>
 using namespace std;

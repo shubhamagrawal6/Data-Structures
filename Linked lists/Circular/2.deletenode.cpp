@@ -11,48 +11,38 @@ class Node {
     }
 };
 
-void printlist(Node *last) {
+void printlist(Node *head) {
     
-    if(last == NULL){
+    if(head == NULL){
         cout<<"Empty List \n";
         return;
     }
 
-    Node *temp;
-    temp = last->next; 
+    Node *temp = head; 
     //Since it is circular linked list the next element will only be null if list is empty
 
     do {
         cout<<temp->data<<endl;
         temp = temp->next;
-    }while(temp != last->next);
+    }while(temp != head);
 
 }
 
-Node* insertempty(Node *last, int data) {
-    if(last != NULL) {
-        return last;
+void push (Node** head_ref, int data) {
+    Node* ptr1 = new Node(data);
+    ptr1->next = *head_ref;
+    // If linked list is not NULL then set the next of last node
+    if (*head_ref != NULL) {
+        // Find the node before head and update next of it
+        Node* temp = *head_ref;
+        while (temp->next != *head_ref)
+            temp = temp->next;
+        temp->next = ptr1;
     }
-
-    Node *temp = new Node(data);
+    else
+        ptr1->next = ptr1;
     
-    last = temp;
-    last->next = last; //Self loop
-
-    return last;
-}
-
-Node* insertbegin(Node* last, int data) {
-    if(last == NULL) {
-        return insertempty(last, data);
-    }
-
-    Node* temp = new Node(data);
-    
-    temp->next = last->next;
-    last->next = temp;
-    
-    return last;
+    *head_ref = ptr1;
 }
 
 void deletenode(Node **headref, int item) {
@@ -68,6 +58,7 @@ void deletenode(Node **headref, int item) {
         if((*headref)->next == (*headref)){
             delete *headref;
             *headref = NULL;
+            return;
         }
 
         else{
@@ -77,24 +68,24 @@ void deletenode(Node **headref, int item) {
             }
             temp->next = (*headref)->next;
             *headref = temp->next;
+            return;
         }
     }
     
     //If node to be deleted is anywhere except head
     Node *temp  = *headref;
-    while(temp != *headref){
+    do {
         if(temp->next->data == item){
             temp->next = temp->next->next;
             break;
         }
-        else{
-            temp = temp->next;
-        }
-    }
+        temp = temp->next;
+    }while(temp != *headref);
 }
 
 int main(){
     Node *itr = new Node(23);
+    itr->next = itr; // Making a Circular Linked List :) 
     printlist(itr);
     cout<<"test\n";
     
@@ -102,12 +93,12 @@ int main(){
     printlist(itr);
     cout<<"test\n";
 
-    itr = insertbegin(itr, 4);
-    itr = insertbegin(itr, 12);
-    itr = insertbegin(itr, 8);
-    itr = insertbegin(itr, 1);
-    itr = insertbegin(itr, 9);
-    itr = insertbegin(itr, 37);
+    push(&itr, 4);
+    push(&itr, 12);
+    push(&itr, 8);
+    push(&itr, 1);
+    push(&itr, 9);
+    push(&itr, 37);
     printlist(itr);
     cout<<"test\n";
 
@@ -118,4 +109,6 @@ int main(){
     deletenode(&itr, 37);
     printlist(itr);
     cout<<"test\n";
+
+    return 0;
 }

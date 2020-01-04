@@ -51,7 +51,7 @@ int main() {
     stk.size(max);
 
     while(true) {
-        cout << "\n1.Push element\n2.Pop element\n3.View top element\nAny other key to Quit";
+        cout << "\n1.Push element \n2.Pop element \n3.View top element \nAny other key to Quit \n";
         cin >> opt;
 
         switch(opt) {
@@ -79,6 +79,7 @@ int main() {
                 break;
             
             default:
+                exit(0);
                 break;
         }
     }

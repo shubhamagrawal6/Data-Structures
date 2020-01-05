@@ -28,21 +28,22 @@ void printlist(Node *head) {
 
 }
 
-void push (Node** head_ref, int data) {
-    Node* ptr1 = new Node(data);
-    ptr1->next = *head_ref;
-    // If linked list is not NULL then set the next of last node
-    if (*head_ref != NULL) {
-        // Find the node before head and update next of it
-        Node* temp = *head_ref;
-        while (temp->next != *head_ref)
+void push (Node** headref, int data) {
+    Node* temp = new Node(data);
+    temp->next = *headref;
+
+    if(*headref != NULL) {
+        Node* temp = *headref;
+        
+        while(temp->next != *headref) {
             temp = temp->next;
-        temp->next = ptr1;
+        }
+        temp->next = temp;
     }
-    else
-        ptr1->next = ptr1;
-    
-    *head_ref = ptr1;
+    else {
+        temp->next = temp;
+    }
+    *headref = temp;
 }
 
 int length(Node* head) {

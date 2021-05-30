@@ -43,10 +43,10 @@ void levelOrderItr(Node *root) {
         Node* temp = q.front();
         cout<<temp->data<<" ";
         q.pop();
-        if(temp->left != NULL) {
+        if(temp->left) {
             q.push(temp->left);
         }
-        if(temp->right != NULL) {
+        if(temp->right) {
             q.push(temp->right);
         }
     }

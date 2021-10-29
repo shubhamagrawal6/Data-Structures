@@ -1,42 +1,38 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
     int data;
     Node *next;
-    Node(int data) {
+
+    Node(int data){
         this->data = data;
         this->next = NULL;
     }
 };
 
-void printlist(Node *head) {
-    
-    if(head == NULL){
-        cout<<"Empty List \n";
+void printlist(Node *head){
+    if(!head){
+        cout<<"Empty List "<<endl;
         return;
     }
 
     Node *temp = head; 
-    //Since it is circular linked list the next element will only be null if list is empty
-
-    do {
+    do{
         cout<<temp->data<<endl;
         temp = temp->next;
     }while(temp != head);
-
 }
 
 void sortedinsert(Node **headref, Node *newnode){
     Node* temp = *headref;
-
-    if(*headref == NULL) {
+    if(*headref == NULL){
         *headref = newnode;
         (*headref)->next = *headref;
     }
     
-    else if((*headref)->data >= newnode->data) {
+    else if((*headref)->data >= newnode->data){
         while(temp->next != *headref){
             temp = temp->next;
         }
@@ -45,9 +41,9 @@ void sortedinsert(Node **headref, Node *newnode){
         *headref = newnode;
     }
 
-    else {
+    else{
         temp = *headref;
-        while(temp->next != *headref && temp->next->data < newnode->data) {
+        while(temp->next != *headref && temp->next->data < newnode->data){
             temp = temp->next;
         }
         newnode->next = temp->next;
@@ -55,17 +51,16 @@ void sortedinsert(Node **headref, Node *newnode){
     }
 }
 
-int main() {
-    int arr[] = {19, 34, 2, 21, 0, 79};
+int main(){
+    int arr[] ={19, 34, 2, 21, 0, 79};
     Node *head = NULL, *newnode;  
 
-    // Created linked list will be 0->2->19->21->34->79
-    for (int i = 0; i< 6; i++)  {  
+    // 0->2->19->21->34->79
+    for(int i=0; i<6; i++){  
         newnode = new Node(arr[i]); 
         sortedinsert(&head, newnode);  
-    }  
+    }
     
-    printlist(head);  
-      
+    printlist(head);   
     return 0;
 }

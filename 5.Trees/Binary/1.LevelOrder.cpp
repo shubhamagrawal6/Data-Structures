@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
-        int data;
-        Node *left, *right;
-        Node(int data) {
-            this->data = data;
-            this->left = this->right = NULL;
-        }
+    int data;
+    Node *left, *right;
+
+    Node(int data){
+        this->data = data;
+        this->left = this->right = NULL;
+    }
 };
 
 void printCurrentLevel(Node* root, int h){
@@ -32,28 +33,28 @@ void levelOrderRec(Node* root, int h){
     cout<<endl;
 }
 
-void levelOrderItr(Node *root) {
-    if(!root) {
-        cout<<"Tree is empty\n";
+void levelOrderItr(Node *root){
+    if(!root){
+        cout<<"Tree is empty"<<endl;
         return;
     }
     queue<Node*> q;
     q.push(root);
-    while(!q.empty()) {
+    while(!q.empty()){
         Node* temp = q.front();
         cout<<temp->data<<" ";
         q.pop();
-        if(temp->left) {
+        if(temp->left){
             q.push(temp->left);
         }
-        if(temp->right) {
+        if(temp->right){
             q.push(temp->right);
         }
     }
     cout<<endl;
 }
 
-int main() { 
+int main(){ 
     Node *root = new Node(1); 
     root->left = new Node(2); 
     root->right = new Node(3); 

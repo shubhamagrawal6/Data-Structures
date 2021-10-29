@@ -1,56 +1,52 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
     int data;
     Node *next;
-    Node(int data) {
+    Node(int data){
         this->data = data;
         this->next = NULL;
     }
 };
 
-void printlist(Node *head) {
-    
+void printlist(Node *head){
     if(head == NULL){
-        cout<<"Empty List \n";
+        cout<<"Empty List "<<endl;
         return;
     }
 
     Node *temp = head; 
-    //Since it is circular linked list the next element will only be null if list is empty
-
-    do {
+    do{
         cout<<temp->data<<endl;
         temp = temp->next;
     }while(temp != head);
-
 }
 
-void push (Node** headref, int data) {
+void push(Node** headref, int data){
     Node* temp = new Node(data);
     temp->next = *headref;
 
-    if(*headref != NULL) {
+    if(*headref){
         Node* temp = *headref;
-        
-        while(temp->next != *headref) {
+        while(temp->next != *headref){
             temp = temp->next;
         }
         temp->next = temp;
     }
-    else {
+    else{
         temp->next = temp;
     }
+
     *headref = temp;
 }
 
-int length(Node* head) {
+int length(Node* head){
     Node* temp = head;
     int count = 0;
 
-    do {
+    do{
         temp = temp->next;
         count++;
     }while(temp != head);
@@ -58,9 +54,9 @@ int length(Node* head) {
     return count;
 }
 
-int main() {
+int main(){
     Node* head = new Node(23);
-    head->next = head; //Making the list Circular
+    head->next = head; 
 
     push(&head, 4);
     push(&head, 3);

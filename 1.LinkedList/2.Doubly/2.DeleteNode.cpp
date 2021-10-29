@@ -13,7 +13,7 @@ struct Node{
     }
 };
 
-void displayList(Node *head){
+void displayList(Node* head){
     while(head->next){
         cout<<head->data<<" ";
         head = head->next;

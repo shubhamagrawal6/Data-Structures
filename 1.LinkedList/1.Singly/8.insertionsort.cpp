@@ -1,66 +1,59 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//Structure of the node
-struct Node {
+struct Node{
     int data;
     Node* next;
-    //Construction of each Node
-    Node(int data) {
+
+    Node(int data){
         this->data = data;
         this->next = NULL;
     }
 };
 
-//Printing the list
-void printlist(Node* head) {
-    //Corner case
-    if(head == NULL)
-    cout<<"Empty List :) \n";
+void printlist(Node* head){
+    if(!head){
+        cout<<"Empty List :) "<<endl;
+        return;
+    }
 
-    while (head != NULL) {
-        cout << head->data << endl;
+    while(head){
+        cout<<head->data<<endl;
         head = head->next; 
     }
 }
 
-//Inserting a single node in sorted linked list (headref used as head may change)
-//Sort type: Ascending
-void sortinsert (Node** headref, Node* newnode) {
-    //Corner case
-    if (*headref == NULL || (*headref)->data >= newnode->data) {
+void sortinsert(Node** headref, Node* newnode){
+    if(*headref == NULL || (*headref)->data >= newnode->data){
         newnode->next = *headref;
         *headref = newnode;
     }
 
-    else {
+    else{
         Node* current;
         current = *headref;
-        while (current->next != NULL && current->next->data < newnode->data)
+        while(current->next != NULL && current->next->data < newnode->data){
             current = current->next;
+        }
         newnode->next = current->next;
         current->next = newnode;
     }
 }
 
-//Creating sorted list (headref used as head changes)
-void insertionsort (Node** headref) {
-    //Pointer to be used as head for sorted linked list
+void insertionsort(Node** headref){
     Node* sorted = NULL;
-    //Traverse the given linked list and insert every node in sorted list
     Node* current = *headref;
 
-    while (current != NULL) {
+    while(current){
         Node* next = current->next;
         sortinsert(&sorted, current);
         current = next;
     }
+
     *headref = sorted;
 }
 
-//Main code
-int main() {
-    //Creating list
+int main(){
     Node* head = new Node(7);
     head->next = new Node(13);
     head->next->next = new Node(11);
@@ -70,9 +63,8 @@ int main() {
     //7->13->11->8->5->6->NULL
     printlist(head);
 
-    //Sorting the list
     insertionsort(&head); //5->6->7->8->11->13->NULL
-    cout<<"Sorted List: \n";
+    cout<<"Sorted List: "<<endl;
     printlist(head);
 
     return 0;

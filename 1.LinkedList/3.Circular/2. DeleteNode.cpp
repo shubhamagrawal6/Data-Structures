@@ -1,80 +1,71 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
     int data;
-    Node *next;
-    Node(int data) {
+    Node* next;
+    
+    Node(int data){
         this->data = data;
         this->next = NULL;
     }
 };
 
-void printlist(Node *head) {
-    
-    if(head == NULL){
-        cout<<"Empty List \n";
+void printlist(Node *head){
+    if(!head){
+        cout<<"Empty List "<<endl;
         return;
     }
 
     Node *temp = head; 
-    //Since it is circular linked list the next element will only be null if list is empty
-
-    do {
+    do{
         cout<<temp->data<<endl;
         temp = temp->next;
     }while(temp != head);
-
 }
 
-void push (Node** head_ref, int data) {
+void push (Node** head_ref, int data){
     Node* ptr1 = new Node(data);
     ptr1->next = *head_ref;
-    // If linked list is not NULL then set the next of last node
-    if (*head_ref != NULL) {
-        // Find the node before head and update next of it
+    if(*head_ref){
         Node* temp = *head_ref;
-        while (temp->next != *head_ref)
+        while(temp->next != *head_ref){
             temp = temp->next;
+        }
         temp->next = ptr1;
     }
-    else
+    else{
         ptr1->next = ptr1;
-    
+    }
+
     *head_ref = ptr1;
 }
 
-void deletenode(Node **headref, int item) {
-    //If list is empty
+void deletenode(Node **headref, int item){
     if(*headref == NULL){
-        cout<<"Empty List \n";
+        cout<<"Empty List "<<endl;
         return;
     }
     
-    //If node to be deleted is at head
     if((*headref)->data == item){
-        //If list is a self loop
         if((*headref)->next == (*headref)){
             delete *headref;
             *headref = NULL;
             return;
         }
 
-        else{
-            Node *temp  = (*headref)->next;
-            while(temp->next != *headref){
-                temp = temp->next;
-            }
-            temp->next = (*headref)->next;
-            *headref = temp->next;
-            return;
+        Node *temp  = (*headref)->next;
+        while(temp->next != *headref){
+            temp = temp->next;
         }
+        temp->next = (*headref)->next;
+        *headref = temp->next;
+        return;
     }
     
-    //If node to be deleted is anywhere except head
     Node *temp  = *headref;
-    do {
+    do{
         if(temp->next->data == item){
             temp->next = temp->next->next;
             break;
@@ -85,13 +76,13 @@ void deletenode(Node **headref, int item) {
 
 int main(){
     Node *itr = new Node(23);
-    itr->next = itr; // Making a Circular Linked List :) 
+    itr->next = itr; 
     printlist(itr);
-    cout<<"test\n";
+    cout<<"test"<<endl;
     
     deletenode(&itr,23);
     printlist(itr);
-    cout<<"test\n";
+    cout<<"test"<<endl;
 
     push(&itr, 4);
     push(&itr, 12);
@@ -100,15 +91,15 @@ int main(){
     push(&itr, 9);
     push(&itr, 37);
     printlist(itr);
-    cout<<"test\n";
+    cout<<"test"<<endl;
 
     deletenode(&itr, 12);
     printlist(itr);
-    cout<<"test\n";
+    cout<<"test"<<endl;
     
     deletenode(&itr, 37);
     printlist(itr);
-    cout<<"test\n";
+    cout<<"test"<<endl;
 
     return 0;
 }

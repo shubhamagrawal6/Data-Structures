@@ -27,7 +27,23 @@ void displayList(Node *head){
     cout<<head->data<<endl;
 }
 
-Node *deleteTail(Node * head){
+void append(Node** head_ref, int new_data){
+    Node* new_node = new Node(new_data);
+    Node* last = *head_ref; 
+    new_node->next = NULL;
+    if(*head_ref == NULL){
+        new_node->prev = NULL;
+        *head_ref = new_node;
+        return;
+    }
+    while(last->next != NULL){
+        last = last->next;
+    }
+    last->next = new_node;
+    new_node->prev = last;
+}
+
+Node* deleteTail(Node* head){
     if(!head || !(head->next)){
         return NULL;
     }
@@ -40,7 +56,7 @@ Node *deleteTail(Node * head){
     return head;
 }
 
-Node *deleteHead(Node * head){
+Node* deleteHead(Node* head){
     if(!head || !(head->next)){
         return NULL;
     }
@@ -50,7 +66,7 @@ Node *deleteHead(Node * head){
     return temp;
 }
 
-Node* deleteNode(Node *head_ref, int x){
+Node* deleteNode(Node* head_ref, int x){
     int k = 1;
     Node* cur = head_ref;
     Node* pre = NULL;
@@ -70,6 +86,24 @@ Node* deleteNode(Node *head_ref, int x){
 }
 
 int main() {
-	
+	Node* head = new Node(7);
+    append(&head, 13);
+    append(&head, 11);
+    append(&head, 8);
+    append(&head, 5);
+    //7->13->11->8->5->NULL
+    displayList(head);
+
+    deleteNode(head, 4); //7->13->11->5->NULL
+    cout<<"After deleting "<<endl;
+    displayList(head);
+
+    deleteHead(head); //13->11->5->NULL
+    cout<<"After deleting "<<endl;
+    displayList(head);
+
+    deleteTail(head); //13->11->NULL
+    cout<<"After deleting "<<endl;
+    displayList(head);
 	return 0;
 }

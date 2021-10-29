@@ -67,8 +67,9 @@ void append(Node** head_ref, int new_data){
         *head_ref = new_node;
         return;
     }
-    while(last->next != NULL)
+    while(last->next != NULL){
         last = last->next;
+    }
     last->next = new_node;
     new_node->prev = last;
 }

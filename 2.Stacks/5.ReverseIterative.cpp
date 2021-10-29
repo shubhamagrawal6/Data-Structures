@@ -1,29 +1,29 @@
-//Reversing a stack using iterative method
-
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
-        int data;
-        Node* next;
-        Node (int data) {
-            this->data = data;
-            this->next = NULL;
-        }
+    int data;
+    Node* next;
+    
+    Node(int data){
+        this->data = data;
+        this->next = NULL;
+    }
 };
 
-class Stack {
+class Stack{
     Node* top;
+
     public:
-        void push(int data);
-        Node* pop();
-        void display();
-        void reverse();
+    void push(int data);
+    Node* pop();
+    void display();
+    void reverse();
 };
 
-void Stack::push(int data) {
-    if (top == NULL) {
+void Stack::push(int data){
+    if(top == NULL){
         top = new Node (data);
         return;
     }
@@ -32,28 +32,27 @@ void Stack::push(int data) {
     top = t;
 }
 
-Node* Stack :: pop() {
+Node* Stack::pop(){
     Node* s = top;
     top = top->next;
     return s;
 }
 
-void Stack :: display() {
+void Stack::display(){
     Node* curr = top;
-    while (curr != NULL) {
-        cout << curr->data << " ";
+    while(curr){
+        cout<<curr->data<<" ";
         curr = curr->next;
     }
-    cout << endl;
+    cout<<endl;
 }
 
-void Stack:: reverse() {
+void Stack::reverse(){
     Node *prev, *cur, *succ;
     cur = prev = top;
     cur = cur->next;
     prev->next = NULL;
-    while (cur != NULL) {
-
+    while(cur){
         succ = cur->next;
         cur->next = prev;
         prev = cur;
@@ -63,19 +62,19 @@ void Stack:: reverse() {
 }
 
 
-int main() {
+int main(){
     Stack *s = new Stack();
     s->push(1);
     s->push(2);
     s->push(3);
     s->push(4);
 
-    cout << "Original Stack:\n";
+    cout<<"Original Stack:"<<endl;
     s->display();
 
     s->reverse();
 
-    cout << "Reversed Stack:\n";
+    cout<<"Reversed Stack:"<<endl;
     s->display();
 
     return 0;

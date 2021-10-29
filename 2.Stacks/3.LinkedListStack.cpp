@@ -38,5 +38,16 @@ int MyStack::pop(){
 }
 
 int main() {
-    
+    MyStack ms;
+    ms.push(5); // 5
+    ms.push(8); // 8 5
+    ms.push(7); // 7 8 5
+    cout<<ms.pop()<<endl; // 8 5
+    ms.push(6); // 6 8 5
+    ms.push(3); // 3 6 8 5
+    cout<<ms.pop()<<endl; // 6 8 5
+    cout<<ms.pop()<<endl; // 8 5
+    cout<<ms.pop()<<endl; // 5
+
+    return 0;
 }

@@ -3,16 +3,17 @@ using namespace std;
 
 class Node{
     public:
-        int data;
-        Node *left, *right;
-        Node(int data){
-            this->data = data;
-            this->right = this->left = NULL;
-        }
+    int data;
+    Node *left, *right;
+    
+    Node(int data){
+        this->data = data;
+        this->right = this->left = NULL;
+    }
 };
 
-void postOrderRec(Node* root) {
-    if (!root){
+void postOrderRec(Node* root){
+    if(!root){
         return;
     }
     postOrderRec(root->left);
@@ -22,7 +23,7 @@ void postOrderRec(Node* root) {
 
 void postOrderItr(Node* root){
     if(!root){
-        cout<<"Tree is empty\n";
+        cout<<"Tree is empty"<<endl;
         return;
     }
     vector<int> ans;
@@ -46,7 +47,7 @@ void postOrderItr(Node* root){
     cout<<endl;
 }
 
-int main() { 
+int main(){ 
     Node *root = new Node(1); 
     root->left = new Node(2); 
     root->right = new Node(3); 

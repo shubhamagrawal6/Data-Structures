@@ -1,18 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
-        int data;
-        Node *left, *right;
-        Node(int data) {
-            this->data = data;
-            this->left = this->right = NULL;
-        }
+    int data;
+    Node *left, *right;
+    
+    Node(int data){
+        this->data = data;
+        this->left = this->right = NULL;
+    }
 };
 
-void inOrderRec(Node* root) {
-    if (!root){ 
+void inOrderRec(Node* root){
+    if(!root){ 
         return;
     }
     inOrderRec(root->left);
@@ -22,7 +23,7 @@ void inOrderRec(Node* root) {
 
 void inOrderItr(Node* root){
     if(!root){
-        cout<<"Empty tree \n";
+        cout<<"Empty tree "<<endl;
         return;
     }
     stack<Node*> s;
@@ -41,7 +42,7 @@ void inOrderItr(Node* root){
     cout<<endl;
 }
 
-int main() { 
+int main(){ 
     Node *root = new Node(1); 
     root->left = new Node(2); 
     root->right = new Node(3); 

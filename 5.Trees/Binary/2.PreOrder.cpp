@@ -1,18 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
-        int data;
-        Node *left, *right;
-        Node(int data){
-            this->data = data;
-            this->left = this->right = NULL;
-        }
+    int data;
+    Node *left, *right;
+    
+    Node(int data){
+        this->data = data;
+        this->left = this->right = NULL;
+    }
 };
 
-void preOrderRec(Node* root) {
-    if (!root){ 
+void preOrderRec(Node* root){
+    if(!root){ 
         return;
     }
     cout<<root->data<<" ";
@@ -22,9 +23,10 @@ void preOrderRec(Node* root) {
 
 void preOrderItr(Node* root){
     if(!root){
-        cout<<"Empty Tree \n";
+        cout<<"Empty Tree "<<endl;
         return;
     }
+    
     stack<Node*> s;
     Node* curr = root;
     while(curr || !s.empty()){

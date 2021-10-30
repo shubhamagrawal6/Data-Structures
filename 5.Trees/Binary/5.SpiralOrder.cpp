@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Node {
+class Node{
     public:
-        int data;
-        Node *left, *right;
-        Node(int data) {
-            this->data = data;
-            this->left = this->right = NULL;
-        }
+    int data;
+    Node *left, *right;
+    
+    Node(int data){
+        this->data = data;
+        this->left = this->right = NULL;
+    }
 };
 
 void printCurrentLevel(Node* root, int h, bool ltr){
@@ -39,42 +40,38 @@ void spiralOrderRec(Node* root, int height){
     cout<<endl;
 }
 
-void spiralOrderItr(Node* root) {
+void spiralOrderItr(Node* root){
     if (!root){   
         return;
     }
-    // Stack 1: For levels to be printed from R to L
     stack <Node*> s1;
-    // Stack 2: For levels to be printed from L to R
     stack <Node*> s2;
     
     s1.push(root);
-    while(!s1.empty() || !s2.empty()) {
-        while (!s1.empty()) {
+    while(!s1.empty() || !s2.empty()){
+        while (!s1.empty()){
             Node* temp = s1.top();
             s1.pop();
-            cout << temp->data << " ";
+            cout<<temp->data<<" ";
 
-            // Note right node is pushed before left
             if (temp->right) s2.push(temp->right);
             if (temp->left) s2.push(temp->left);
         }
-        while (!s2.empty()) {
+        while (!s2.empty()){
             Node* temp = s2.top();
             s2.pop();
-            cout << temp->data << " ";
+            cout<<temp->data<<" ";
 
-            // Note left node is pushed before right
             if (temp->left) s1.push(temp->left);
             if (temp->right) s1.push(temp->right);
         }
     }
-    cout << endl;
+    cout<<endl;
 }
 
 
 
-int main() { 
+int main(){ 
     Node *root = new Node(1); 
     root->left = new Node(2); 
     root->right = new Node(3); 

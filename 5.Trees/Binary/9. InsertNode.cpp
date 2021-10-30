@@ -3,12 +3,13 @@ using namespace std;
 
 class Node{
     public:
-        int data;
-        Node *right, *left;
-        Node(int data){
-            this->data = data;
-            this->right = this->left = NULL;
-        }
+    int data;
+    Node *right, *left;
+    
+    Node(int data){
+        this->data = data;
+        this->right = this->left = NULL;
+    }
 };
 
 void levelOrder(Node* root){

@@ -21,19 +21,24 @@ void inorder(Node* root){
     inorder(root->right);
 }
 
-bool search(Node* root, int x){
-    if(!root){
-        return false;
+int Ceil(Node* root, int input) { 
+    if (root == NULL){ 
+        return -1;
     }
-    if(root->data == x){
-        return true;
+    int ans = -1;
+    while(root){
+        if(root->data == input){
+            return input;
+        }
+        else if(root->data > input){
+            ans = root->data;
+            root = root->left;
+        }
+        else{
+            root = root->right;
+        }
     }
-    if(root->data > x){
-        return search(root->left, x);
-    }
-    if(root->data < x){
-        return search(root->right, x);
-    }
+    return ans;
 }
 
 int main(){
@@ -43,8 +48,7 @@ int main(){
     root->right->right = new Node(6);
     inorder(root);
     
-    cout<<search(root, 3)<<endl;
-    cout<<search(root, 5)<<endl;
+    cout<<Ceil(root, 3)<<endl;
 
     return 0;
 }

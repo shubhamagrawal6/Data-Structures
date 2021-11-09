@@ -21,7 +21,7 @@ void inorder(Node* root){
     inorder(root->right);
 }
 
-Node* Delete(Node* root, int key){
+Node* Delete(Node* root, int x){
     if(!root){
         return root;
     }
